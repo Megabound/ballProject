@@ -1,35 +1,23 @@
 """Main program to run the Ball"""
 import sys
-import time
-#import Rpi.GPIO as GPIO
-
-def checkCatch():
-	"""Checks to see if the ball has been thrown and caught"""
-	triggered = False
-	accelerometer = 10
-	setLevel = 5
-	
-	if accelerometer<setLevel:
-		triggered = True
-	
-	return triggered
-
-def playSound():
-	"""Plays the next sound available on the USB drive"""
-	return "Hell"
-
-def switchLight():
-	"""Switches the light to the next state"""
-	return "Yeah"
+import Rpi.GPIO as GPIO
+import SimpleMFRC522
+from LIS3DH import LIS3DH
+from time import sleep
 
 def main():
 	"""Main entry point for the program"""
-	triggered = checkCatch()
-	
-	if triggered:
-		print(playSound())
-		time.sleep(1)
-		print(switchLight())
+	sensor = LIS3DH()
+    sensor.setRange(LIS3DH.RANGE_2G)
+
+	while True:
+		x = abs(sensor.getX())
+        y = abs(sensor.getY())
+        z = abs(sensor.getZ())
+        average = (x+y+z)/3
+        print(average)
+        sleep(0.1)
+
 
 
 if __name__ == '__main__':
