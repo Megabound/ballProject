@@ -1,31 +1,34 @@
 """Main program to run the Ball"""
 import sys
 import time
+#import Rpi.GPIO as GPIO
 
 def checkCatch():
+	"""Checks to see if the ball has been thrown and caught"""
 	triggered = False
 	accelerometer = 10
 	setLevel = 5
-	"""Checks to see if the ball has been thrown and caught"""
-	if accelerometer>setLevel:
-		return True
-	else:
-		return False
-
-def switchLight():
-	"""Switches the light to the next state"""
-	return "Hell"
+	
+	if accelerometer<setLevel:
+		triggered = True
+	
+	return triggered
 
 def playSound():
 	"""Plays the next sound available on the USB drive"""
+	return "Hell"
+
+def switchLight():
+	"""Switches the light to the next state"""
 	return "Yeah"
 
 def main():
 	"""Main entry point for the program"""
-	triggered = checkCatch
+	triggered = checkCatch()
+	
 	if triggered:
 		print(playSound())
-		time.sleep(5)
+		time.sleep(1)
 		print(switchLight())
 
 
