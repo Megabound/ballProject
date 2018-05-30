@@ -13,9 +13,10 @@ def readAccel(sensor):
 	return average
 
 def readRFID(reader):
-	id = 0
-	id = reader.read_id_no_block()
-	return id
+	id = None
+	text = None
+	id, text = reader.read_no_block()
+	return text
 
 def main():
 	"""Main entry point for the program"""
