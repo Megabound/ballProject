@@ -22,7 +22,7 @@ def readRFID(reader): #Reads the data from the RFID tag and returns the text sto
 	return text
 
 def fileList(directory): #Returns a list of files in the specified directory, in the correct format for Pyglet
-	list = glob.glob("./" + directory + "/*")
+	list = glob.glob("./" + directory + "/*.wav")
 	for i in range(0,len(list)):
 		list[i]=list[i][4:]
 	return list, 0
